@@ -9,7 +9,7 @@ ADAFRUIT_KEY = os.environ.get("ADAFRUIT_KEY")
 MESH_BROKER = "mqtt.meshtastic.org"
 MESH_USER = "meshdev"
 MESH_PASS = "large4cats"
-MESH_TOPIC = "msh/ANZ/2/json/LongFast/!91306040"
+MESH_TOPIC = "msh/ANZ/2/json/LongFast/#"
 
 def send_to_adafruit(lat, lon):
     url = "https://io.adafruit.com/api/v2/{}/feeds/location/data".format(ADAFRUIT_USERNAME)
@@ -28,7 +28,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     try:
         data = json.loads(msg.payload)
-        if data.get("type") == "position":
+        if data.get("type") == "position" and data.get("from") == 2435866688:
             lat = data["payload"]["latitude_i"] / 10000000
             lon = data["payload"]["longitude_i"] / 10000000
             send_to_adafruit(lat, lon)
