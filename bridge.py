@@ -9,7 +9,7 @@ ADAFRUIT_KEY = os.environ.get("ADAFRUIT_KEY")
 MESH_BROKER = "mqtt.meshtastic.org"
 MESH_USER = "meshdev"
 MESH_PASS = "large4cats"
-MESH_TOPIC = "msh/ANZ/2/json/LongFast/#"
+MESH_TOPIC = "msh/ANZ/2/json/LongModerate/#"
 
 def send_to_adafruit(lat, lon):
     url = "https://io.adafruit.com/api/v2/{}/feeds/location/data".format(ADAFRUIT_USERNAME)
